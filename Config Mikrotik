@@ -1,0 +1,20 @@
+Koneksi Awal: Hubungkan PC ke MikroTik dengan kabel LAN, lalu sambungkan MikroTik ke sumber internet (ISP).
+Login: Buka aplikasi Winbox (unduh dari MikroTik atau ID-Networkers (IDN.ID)), pilih perangkat di tab "Neighbors", login dengan user admin (password kosong), lalu klik Connect.
+Reset Konfigurasi (Opsional): Jika baru pertama kali, System -> Reset Configuration -> No Default Configuration -> Reset Configuration -> Yes untuk memulai dari awal.
+Konfigurasi IP Address (WAN):
+Pilih IP > DHCP Client > +.
+Pilih interface WAN (misal ether1), klik Apply & OK. Router akan dapat IP otomatis dari ISP.
+Konfigurasi IP Address (LAN):
+Pilih IP > Addresses > +.
+Masukkan IP LAN (misal 192.168.1.1/24), pilih interface LAN (misal ether2), Apply & OK.
+Konfigurasi Default Route (Jika tidak otomatis):
+Pilih IP > Routes > +.
+Dst. Address: 0.0.0.0/0, Gateway: IP Gateway ISP, Apply & OK.
+Konfigurasi DNS:
+IP > DNS > Servers masukkan DNS (misal 8.8.8.8, 8.8.4.4), centang Allow Remote Requests, Apply & OK.
+Konfigurasi NAT (Masquerade):
+IP > Firewall > NAT > +.
+Chain: srcnat, Out. Interface: ether1 (WAN), Action: masquerade, Apply & OK.
+Konfigurasi DHCP Server (untuk LAN):
+IP > DHCP Server > DHCP Setup.
+Pilih interface LAN (misal ether2), ikuti wizard hingga selesa
